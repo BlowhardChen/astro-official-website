@@ -1,0 +1,14 @@
+---
+import MainLayout from "../layouts/Main.astro";
+import Responsive from "../components/Responsive.astro";
+import HomeMain from "../components/Home/WebHome/HomeMain";
+import MobileHomeMain from "../components/Home/MobileHome/MobileHomeMain";
+
+---
+
+<MainLayout>
+  <Responsive>
+    <HomeMain slot="large" />
+    <MobileHomeMain slot="small" />
+  </Responsive>
+</MainLayout>

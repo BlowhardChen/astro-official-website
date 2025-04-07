@@ -1,0 +1,14 @@
+---
+import MainLayout from "../layouts/Main.astro";
+import Responsive from "../components/Responsive.astro";
+import BusinessMain from "../components/Business/WebBusinessMain/BusinessMain";
+import MobileBusinessMain from "../components/Business/MobileBusinessMain/MobileBusinessMain";
+
+---
+
+<MainLayout>
+  <Responsive>
+    <BusinessMain slot="large"  client:only />
+    <MobileBusinessMain slot="small"  client:only />
+  </Responsive>
+</MainLayout>

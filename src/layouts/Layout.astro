@@ -1,0 +1,108 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="乡土（北京）科技有限公司是一家致力于以数字技术推动农业发展的科技公司，旗下地约云平台以“互联网+农业服务”为基础，整合农资、农机、农技，运用物联网创新农业技术服务农业生产。"
+    />
+    <meta
+      name="keywords"
+      content="地约，地约农业，地约科技，地约官网，地约农业官网，地约科技官网，乡土，乡土农业，乡土科技，乡土北京，乡土官网，乡土农业官网，乡土科技官网，土地流转，土地托管"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title || "地约—地尽其力，地利共享"}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+
+
+<script>
+  // 扩展 Window 接口以包含 attachEvent
+  interface ExtendedWindow extends Window {
+    attachEvent?: (event: string, listener: () => void) => void;
+  }
+
+  // 获取系统类型
+  function getSystem(): boolean {
+    const agent = navigator.userAgent.toLowerCase();
+    return agent.includes("windows");
+  }
+
+  // 监听方法兼容写法
+  function addHandler(
+    element: HTMLElement | ExtendedWindow,
+    type: string,
+    handler: EventListenerOrEventListenerObject
+  ): void {
+    if (element.addEventListener) {
+      element.addEventListener(type, handler, false);
+    } else if ('attachEvent' in element) {
+      // 处理IE兼容性
+      (element as ExtendedWindow).attachEvent?.(
+        `on${type}`,
+        'handleEvent' in handler 
+          ? () => (handler as EventListenerObject).handleEvent(window.event as Event)
+          : () => (handler as EventListener)(window.event as Event)
+      );
+    } else {
+      (element as any)[`on${type}`] = handler;
+    }
+  }
+
+  function roundToPrecision(number: number, precision = 2): number {
+    const factor = Math.pow(10, precision);
+    return Math.round(number * factor) / factor;
+  }
+
+  // 校正浏览器缩放比例
+  function correct(): void {
+    const appWidth = 1920;
+    let percentage = (window.innerWidth * 100) / appWidth;
+    const appHeight = 1080;
+
+    if (appHeight * percentage > window.innerHeight * 100) {
+      percentage = (window.innerHeight * 100) / appHeight;
+    }
+
+    const roundedPercentage = roundToPrecision(percentage / 100, 3);
+    const body = document.getElementsByTagName("body")[0];
+    if (body) {
+      body.style.zoom = roundedPercentage.toString();
+    }
+  }
+
+  // 监听页面缩放
+  function watch(): void {
+    addHandler(window, "resize", () => {
+      correct();
+    });
+  }
+
+  // 初始化页面比例
+  function init(): void {
+    if (getSystem()) {
+      correct();
+      watch();
+    }
+  }
+
+  init();
+</script>
+
+<style is:global></style>

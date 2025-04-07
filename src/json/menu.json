@@ -1,0 +1,55 @@
+{
+  "home": {
+    "title": "首页"
+  },
+  "business": {
+    "title": "公司业务",
+    "items": {
+      "circulation": {
+        "title": "土地流转",
+        "url": "/introduce"
+      },
+      "hosting": {
+        "title": "土地托管",
+        "url": "/join"
+      }
+    }
+  },
+  "about": {
+    "title": "关于我们",
+    "items": {
+      "officialAccount": {
+        "title": "公司介绍",
+        "url": "/about#about"
+      },
+      "culture": {
+        "title": "企业文化",
+        "url": "/about#culture"
+      },
+      "honor": {
+        "title": "荣誉资质",
+        "url": "/about#honor"
+      }
+    }
+  },
+  "cooperation": {
+    "title": "加入我们",
+    "items": {
+      "policy": {
+        "title": "合作政策",
+        "url": "/join#support"
+      },
+      "process": {
+        "title": "合作流程",
+        "url": "/join#process"
+      },
+      "contact": {
+        "title": "联系我们",
+        "url": "/join#us"
+      }
+    }
+  },
+  "explore": {
+    "title": "后台登录"
+  }
+}

@@ -1,0 +1,13 @@
+---
+import MainLayout from "../layouts/Main.astro";
+import Responsive from "../components/Responsive.astro";
+import JoinMain from "../components/Join/WebJoin/JoinMain";
+import MobileJoinMain from "../components/Join/MobileJoin/MobileJoinMain";
+---
+
+<MainLayout>
+  <Responsive>
+    <JoinMain slot="large" />
+    <MobileJoinMain slot="small" />
+  </Responsive>
+</MainLayout>

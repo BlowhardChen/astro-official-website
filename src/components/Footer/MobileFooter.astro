@@ -1,0 +1,82 @@
+---
+import recordInfo from "../../json/recordInfo.json";
+import menu from "../../json/menu.json";
+import business from "../../json/business.json";
+
+const footerMenu = menu;
+---
+
+<footer class="bg-[#272727]">
+  <div class="custom-width !px-4">
+    <div class="pt-10 flex text-base justify-center">
+      <div class="flex">
+        <!-- 公司业务 -->
+        <div class="flex flex-col">
+          <span class="text-white text-base font-bold mb-[14px]"
+            >{footerMenu.business.title}</span
+          >
+          {
+            business.map((p) => (
+              <a
+                href={p.url}
+                class="text-[hsla(0,0%,100%,.5)] hover:text-white text-sm mb-[10px]"
+              >
+                {p.name}
+              </a>
+            ))
+          }
+        </div>
+
+        <!-- 关于我们 -->
+        <div class="flex flex-col ml-[52px]">
+          <span class="text-white text-base font-bold mb-[14px]"
+            >{footerMenu.about.title}</span
+          >
+          {
+            Object.entries(footerMenu.about.items).map(([k, v]) => (
+              <a
+                href={v.url}
+                class="text-[hsla(0,0%,100%,.5)] hover:text-white ext-sm mb-[10px]"
+              >
+                {v.title}
+              </a>
+            ))
+          }
+        </div>
+
+        <!-- 加入我们 -->
+        <div class="flex flex-col ml-[52px]">
+          <span class="text-white text-base font-bold mb-[14px]"
+            >{footerMenu.cooperation.title}</span
+          >
+          {
+            Object.entries(footerMenu.cooperation.items).map(([k, v]) => (
+              <a
+                href={v.url}
+                class="text-[hsla(0,0%,100%,.5)] hover:text-white ext-sm mb-[10px]"
+              >
+                {v.title}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <!-- 联系方式 -->
+    <div class="custom-width mt-[28px] felx justify-center">
+      <div class="text-white text-base font-bold">全国客服电话</div>
+      <div class="text-white/65 text-2xl mt-[8px] font-bold">400-110-5006</div>
+      <div class="text-white/65 text-xs mt-[8px]">
+        地址：北京市海淀区上地十街1号院3号楼18层1810
+      </div>
+    </div>
+
+    <!-- copyright -->
+    <div
+      class="py-6 border-t border-[hsla(0,0%,100%,.2)] flex items-center justify-center flex-wrap gap-x-10 text-[hsla(0,0%,100%,.5)] text-sm mt-[22px]"
+    >
+      <span>{recordInfo.copyright}</span>
+      <a href={recordInfo.icp.url} target="_blank">{recordInfo.icp.text}</a>
+    </div>
+  </div>
+</footer>

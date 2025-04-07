@@ -1,0 +1,96 @@
+---
+import logo from "../../../public/images/nav/logo-mobile.webp";
+import iocnMenu from "../../../public/images/nav/icon-menu-mobile.webp";
+import iocnClose from "../../../public/images/nav/icon-close-mobile.webp";
+import iocnRight from "../../../public/images/nav/icon-right.webp";
+import menu from "../../json/menu.json";
+
+
+const renderMenu = {
+  introduce: {
+    title: menu.home.title,
+    url: "/",
+  },
+  join: {
+    title: menu.business.title,
+    url: "/business",
+  },
+  contact: {
+    title: menu.about.title,
+    url: "/about",
+  },
+  cooperate: {
+    title: menu.cooperation.title,
+    url: "/join",
+  },
+};
+
+const menuItemClasses =
+  "text-black[0.7]  py-6 text-sm border-b border-b-[rgba(255,255,255,.2)] ";
+---
+
+<nav class:list={["fixed top-0 w-full h-[70px] z-[99] bg-[#fff]",]}>
+  <div
+    class="group custom-width absolute top-0 h-full flex items-center justify-between !px-4"
+  >
+    <input class="hidden peer" type="checkbox" id="dropdown-toggle-nav-menu" />
+    <label for="dropdown-toggle-nav-menu" class="z-20">
+      <div class="w-[26px]">
+        <img
+          src={iocnMenu.src}
+          alt="toggle icon"
+          width={26}
+          class="block group-has-[:checked]:hidden"
+        />
+      </div>
+
+      <div class="w-[26px]">
+        <img
+          src={iocnClose.src}
+          alt="toggle icon"
+          width={18}
+          class="hidden group-has-[:checked]:block"
+        />
+      </div>
+    </label>
+    <a href="/" class="z-20"> <img src={logo.src} alt="logo" width={80} /></a>
+    <div class="z-20">
+      <a href="http://admin.xtnf.com/" target="_blank">
+        <button class="bg-primary text-white text-sm w-[72px] h-[28px] rounded"
+          >{menu.explore.title}</button
+        >
+      </a>
+    </div>
+
+    <!-- 下拉菜单 -->
+    <div
+      class:list={[
+        "absolute left-0 top-0 w-full bg-[#fff] z-10",
+        "grid grid-rows-[0fr] peer-checked:grid-rows-[1fr] overflow-hidden transition-all duration-700",
+      ]}
+    >
+      <div class="min-h-0">
+        <div class="pt-[70px] flex flex-col">
+          <!-- 全部产品 -->
+          <div
+            class="grid grid-rows-[0fr] peer-checked:grid-rows-[1fr] overflow-hidden transition-all duration-700"
+          >
+            {
+              Object.entries(renderMenu).map(([k, v]) => (
+                <a href={v.url} class="flex items-center justify-between px-4">
+                  <span class={menuItemClasses}>{v.title}</span>
+                  <img
+                    src={iocnRight.src}
+                    alt="toggle icon"
+                    width={26}
+                    class="hidden group-has-[:checked]:block"
+                  />
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

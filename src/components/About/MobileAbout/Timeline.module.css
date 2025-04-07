@@ -1,0 +1,56 @@
+/* Timeline.module.css */
+.timelineItem {
+  padding: 0 16px;
+  position: relative;
+}
+
+.timelineItem:not(:last-child) .contentWrapper::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -11px;
+  width: 1px;
+  height: 100%;
+  background-color: #ccc;
+}
+
+.contentWrapper {
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.contentWrapper::before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 8px;
+  left: -17px;
+  width: 12px;
+  height: 12px;
+  background-color: #02a435;
+  border-radius: 50%;
+}
+
+.lastItem .contentWrapper::after {
+  display: none;
+}
+
+/* 文字样式 */
+.yearText {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  white-space: nowrap; /* 新增关键属性 */
+  display: inline-block; /* 配合 nowrap 使用 */
+}
+
+.titleText {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.descriptionText {
+  font-size: 14px;
+  color: #666;
+  margin-top: 2px;
+}

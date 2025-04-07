@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import NavItem from "./NavItem.astro";
+import logo from "../../../public/images/nav/logo-pc.webp";
+import menu from "../../json/menu.json";
+
+const { isNavDark = false } = Astro.props;
+---
+
+<nav
+  class:list={[
+    "group bg-white fixed top-0 w-full h-[66px] z-[99] transition-all duration-500 flex justify-center",
+    isNavDark && "bg-[#000]",
+  ]}
+>
+  <div class="w-3/4 flex items-center justify-between">
+    <div class="flex items-center">
+      <!-- Logo 部分 -->
+      <a class="lg:w-[132px] w-[44px]" href="/">
+        <Image src={logo} alt="Navbar logo" class="w-full" />
+      </a>
+      <!-- 右边部分 -->
+      <div
+        class="flex text-black text-[18px] gap-9 h-full ml-[130px] font-medium"
+      >
+        <a href="/"> <NavItem title={menu.home.title} /></a>
+        <a href="/business"><NavItem title={menu.business.title} /></a>
+        <a href="/about"> <NavItem title={menu.about.title} /></a>
+        <a href="/join"> <NavItem title={menu.cooperation.title} /></a>
+      </div>
+    </div>
+    <!-- 后台登录 -->
+    <div class="relative group/item lg:flex hidden items-center">
+      <a href="http://admin.xtnf.com/" target="_blank">
+        <button class="bg-primary text-white text-lg w-[96px] h-[34px] rounded"
+          >{menu.explore.title}</button
+        >
+      </a>
+    </div>
+  </div>
+</nav>
